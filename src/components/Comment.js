@@ -2,12 +2,12 @@ import React from 'react'
 const Comment = (props) => {
   return (
       <div>
-        {props.commentList.map( (comment, i) => {
+        {props.commentsList.map( (comment, i) => {
           return (
               <div key={i}>
                 UserName:{comment.username}<br />
                 Comment: {comment.body} <br />
-                TIme: {comment.timestamp}
+                Time: {comment.timestamp}
               </div>
             )
         })}

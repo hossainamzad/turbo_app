@@ -6,13 +6,9 @@ class Comments extends Component {
     this.state = {
       comment: {
         username: '',
-        body: ''
-      },
-      data: [
-        {username: 'Che', body: 'holy cow!', timestamp: '10:30'},
-        {username: 'Fidel', body: 'holy Moly', timestamp: '10:40'},
-        {username: 'Barak', body: 'We can', timestamp: '10:50'},
-      ]
+        body: '',
+        timestamp: ''
+      }
     }
     this.submitComment = this.submitComment.bind(this)
     this.updateUsername = this.updateUsername.bind(this)
@@ -51,16 +47,13 @@ class Comments extends Component {
   submitComment(event){
     // event.preventDefault();
     console.log("Comment submitted: " + JSON.stringify(this.state.comment))
-    const updatedData = Object.assign([], this.state.data)
-    updatedData.push(this.state.comment)
-    this.setState({
-      data: updatedData
-    })
+    const newComment = Object.assign({}, this.state.comment)
+    this.props.handleCommentsList(this.state.comment)
   }
   render () {
     return (
         <div>
-          <Comment commentList = {this.state.data}/>
+          <Comment commentsList = {this.props.commentsList}/>
           <input onChange={this.updateUsername} type= "text" placeholder = "Username" /> <br />
           <input onChange={this.updateBody} type="text" placeholder="Comments" /> <br />
           <input onChange={this.updateTimeStamp} type="text" placeholder="Time" /><br />
